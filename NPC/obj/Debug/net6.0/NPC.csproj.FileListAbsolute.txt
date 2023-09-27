@@ -1,0 +1,14 @@
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\obj\Debug\net6.0\NPC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\obj\Debug\net6.0\NPC.AssemblyInfoInputs.cache
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\obj\Debug\net6.0\NPC.AssemblyInfo.cs
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\obj\Debug\net6.0\NPC.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\bin\Debug\net6.0\NPC.exe
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\bin\Debug\net6.0\NPC.deps.json
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\bin\Debug\net6.0\NPC.runtimeconfig.json
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\bin\Debug\net6.0\NPC.dll
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\bin\Debug\net6.0\NPC.pdb
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\obj\Debug\net6.0\NPC.dll
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\obj\Debug\net6.0\refint\NPC.dll
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\obj\Debug\net6.0\NPC.pdb
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\obj\Debug\net6.0\NPC.genruntimeconfig.cache
+C:\Users\nguye\Documents\GitHub\refactored-adventure\NPC\obj\Debug\net6.0\ref\NPC.dll

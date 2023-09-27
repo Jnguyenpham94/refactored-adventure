@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Adventure
 {
@@ -11,9 +12,9 @@ namespace Adventure
             //                Objects can be identified by more than one type
             //                Ex. A Dog is also: Canine, Animal, Organism
 
-            Car car = new Car(4, "steel");
-            Bicycle bicycle = new Bicycle("aluminum");
-            Boat boat = new Boat("carbon fiber");
+            Player car = new("Hiro", "O", "Hero", new List<string> {"sword", "shield", "chainmail" });
+            Villager bicycle = new("Bob", "Smith", "fisherman", new List<string> { });
+            Enemy boat = new("Gyobu", "Oni", "Demon", new List<string> { });
 
             NPC[] vehicles = { car, bicycle, boat };
 
@@ -27,14 +28,17 @@ namespace Adventure
     }
     class NPC
     {
-        private int fname { get; set; }
-        private int lname { get; set; }
-        private string frame { get; set; }
+        private string fName { get; set; }
+        private string lName { get; set; }
+        private string title { get; set; }
+        private List<string> inventory { get; set; }
 
-        public NPC(int fname, string lname)
+        public NPC(string fName, string lName, string title, List<string> inventory)
         {
-            this.fname = fname;
-            this.frame = lname;
+            this.fName = fName;
+            this.lName = lName;
+            this.title = title;
+            this.inventory = inventory;
         }
 
 
@@ -45,19 +49,53 @@ namespace Adventure
 
         public virtual void Inventory()
         {
-            Console.WriteLine($"{fname} {lname} inventory: ");
+            
+        }
+
+        public virtual void Display(List<string> stuff)
+        {
+
+        }
+
+        public virtual void Stats()
+        {
+            Console.WriteLine();
         }
     }
-    class Car : NPC
+    class Player : NPC
     {
 
-        public Car(int wheels, string frame) : base(wheels, frame)
+        public Player(string fName, string lName, string title, List<string> inventory) : base(fName, lName, title, inventory)
         {
         }
 
         public override void Go()
         {
-            Console.WriteLine("The car is moving!");
+            Console.WriteLine("The player is moving!");
+        }
+
+        public override void Inventory()
+        {
+            base.Inventory();
+        }
+
+        public override void Display(List<string> stuff)
+        {
+            foreach (var item in stuff)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+    class Villager : NPC
+    {
+        public Villager(string fName, string lName, string title, List<string> inventory) : base(fName, lName, title, inventory)
+        {
+        }
+
+        public override void Go()
+        {
+            Console.WriteLine("The villager is moving!");
         }
 
         public override void Inventory()
@@ -65,32 +103,16 @@ namespace Adventure
             base.Inventory();
         }
     }
-    class Bicycle : NPC
+    class Enemy : NPC
     {
-        public Bicycle(string frame, int wheels = 2) : base(wheels, frame)
-        {
-        }
-
-        public override void Go()
-        {
-            Console.WriteLine("The bicycle is moving!");
-        }
-
-        public override void Inventory()
-        {
-            base.Inventory();
-        }
-    }
-    class Boat : NPC
-    {
-        public Boat(string frame, int wheels = 0) : base(wheels, frame)
+        public Enemy(string fName, string lName, string title, List<string> inventory) : base(fName, lName, title, inventory)
         {
 
         }
 
         public override void Go()
         {
-            Console.WriteLine("The boat is moving!");
+            Console.WriteLine("The enemy is moving");
         }
 
         public override void Inventory()
