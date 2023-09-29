@@ -12,16 +12,16 @@ namespace Adventure
             //                Objects can be identified by more than one type
             //                Ex. A Dog is also: Canine, Animal, Organism
 
-            Player hero = new("Hiro", "O", "Hero", 100, new List<string> { "sword", "shield", "chainmail" });
-            Villager fisherman = new("Bob", "Smith", "fisherman", 5, new List<string> {"fishing pole"});
-            Enemy demon = new("Gyobu", "Oni", "Demon", 20, new List<string> {"bloody heart" });
+            Player hero = new("Hiro", "O", "Hero", 100, 100, 100, 5, new List<string> { "sword", "shield", "chainmail" });
+            Villager fisherman = new("Bob", "Smith", "fisherman", 5, 5, 5, 2, new List<string> {"fishing pole"});
+            Enemy demon = new("Gyobu", "Oni", "Demon", 20, 10, 10, 3, new List<string> {"bloody heart" });
 
             NPC[] characters = { hero, fisherman, demon };
 
-            foreach (NPC chars in characters)
+            foreach (NPC peeps in characters)
             {
-                chars.Go();
-                chars.Inventory();
+                peeps.DisplayStats();
+                peeps.Inventory();
             }
 
         }

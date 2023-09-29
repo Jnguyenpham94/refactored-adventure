@@ -12,15 +12,21 @@ namespace Adventure
         private string lName { get; set; }
         private string title { get; set; }
         private int HP { get; set; }
+        private int str { get; set; }
+        private int def { get; set; }
+        private int moves { get; set; }
         private List<string> inventory { get; set; }
 
 
-        public NPC(string fName, string lName, string title, int HP, List<string> inventory)
+        public NPC(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory)
         {
             this.fName = fName;
             this.lName = lName;
             this.title = title;
             this.HP = HP;
+            this.str = str;
+            this.def = def;
+            this.moves = moves;
             this.inventory = inventory;
         }
 
@@ -40,8 +46,13 @@ namespace Adventure
             Console.WriteLine();
         }
 
-        public virtual void Display(List<string> stuff)
+        public virtual void DisplayStats()
         {
+            Console.WriteLine($"{fName} {lName} the {title}");
+            Console.WriteLine($@"HP: {HP}
+STR: {str}
+DEF: {def}
+moves: {moves}");
 
         }
 
@@ -50,7 +61,7 @@ namespace Adventure
     class Player : NPC
     {
 
-        public Player(string fName, string lName, string title, int HP, List<string> inventory) : base(fName, lName, title, HP, inventory)
+        public Player(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory) : base(fName, lName, title, HP, str, def, moves, inventory)
         {
         }
 
@@ -64,17 +75,14 @@ namespace Adventure
             base.Inventory();
         }
 
-        public override void Display(List<string> stuff)
+        public override void DisplayStats()
         {
-            foreach (var item in stuff)
-            {
-                Console.WriteLine(item);
-            }
+            base .DisplayStats();
         }
     }
     class Villager : NPC
     {
-        public Villager(string fName, string lName, string title, int HP, List<string> inventory) : base(fName, lName, title, HP, inventory)
+        public Villager(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory) : base(fName, lName, title, HP, str, def, moves, inventory)
         {
         }
 
@@ -90,7 +98,7 @@ namespace Adventure
     }
     class Enemy : NPC
     {
-        public Enemy(string fName, string lName, string title, int HP, List<string> inventory) : base(fName, lName, title, HP, inventory)
+        public Enemy(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory) : base(fName, lName, title, HP, str, def, moves, inventory)
         {
 
         }
@@ -103,6 +111,11 @@ namespace Adventure
         public override void Inventory()
         {
             base.Inventory();
+        }
+
+        public override void DisplayStats()
+        {
+            base.DisplayStats();
         }
     }
 }
