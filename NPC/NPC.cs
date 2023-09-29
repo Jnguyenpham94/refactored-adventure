@@ -11,13 +11,16 @@ namespace Adventure
         private string fName { get; set; }
         private string lName { get; set; }
         private string title { get; set; }
+        private int HP { get; set; }
         private List<string> inventory { get; set; }
 
-        public NPC(string fName, string lName, string title, List<string> inventory)
+
+        public NPC(string fName, string lName, string title, int HP, List<string> inventory)
         {
             this.fName = fName;
             this.lName = lName;
             this.title = title;
+            this.HP = HP;
             this.inventory = inventory;
         }
 
@@ -29,7 +32,12 @@ namespace Adventure
 
         public virtual void Inventory()
         {
-
+            Console.WriteLine($"The {title}'s inventory: ");
+            foreach (string item in inventory)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
         }
 
         public virtual void Display(List<string> stuff)
@@ -37,15 +45,12 @@ namespace Adventure
 
         }
 
-        public virtual void Stats()
-        {
-            Console.WriteLine();
-        }
+
     }
     class Player : NPC
     {
 
-        public Player(string fName, string lName, string title, List<string> inventory) : base(fName, lName, title, inventory)
+        public Player(string fName, string lName, string title, int HP, List<string> inventory) : base(fName, lName, title, HP, inventory)
         {
         }
 
@@ -69,7 +74,7 @@ namespace Adventure
     }
     class Villager : NPC
     {
-        public Villager(string fName, string lName, string title, List<string> inventory) : base(fName, lName, title, inventory)
+        public Villager(string fName, string lName, string title, int HP, List<string> inventory) : base(fName, lName, title, HP, inventory)
         {
         }
 
@@ -85,7 +90,7 @@ namespace Adventure
     }
     class Enemy : NPC
     {
-        public Enemy(string fName, string lName, string title, List<string> inventory) : base(fName, lName, title, inventory)
+        public Enemy(string fName, string lName, string title, int HP, List<string> inventory) : base(fName, lName, title, HP, inventory)
         {
 
         }

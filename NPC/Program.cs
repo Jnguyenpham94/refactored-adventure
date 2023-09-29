@@ -12,16 +12,16 @@ namespace Adventure
             //                Objects can be identified by more than one type
             //                Ex. A Dog is also: Canine, Animal, Organism
 
-            Player car = new("Hiro", "O", "Hero", new List<string> { "sword", "shield", "chainmail" });
-            Villager bicycle = new("Bob", "Smith", "fisherman", new List<string> { });
-            Enemy boat = new("Gyobu", "Oni", "Demon", new List<string> { });
+            Player hero = new("Hiro", "O", "Hero", 100, new List<string> { "sword", "shield", "chainmail" });
+            Villager fisherman = new("Bob", "Smith", "fisherman", 5, new List<string> {"fishing pole"});
+            Enemy demon = new("Gyobu", "Oni", "Demon", 20, new List<string> {"bloody heart" });
 
-            NPC[] vehicles = { car, bicycle, boat };
+            NPC[] characters = { hero, fisherman, demon };
 
-            foreach (NPC vehicle in vehicles)
+            foreach (NPC chars in characters)
             {
-                vehicle.Go();
-                vehicle.Inventory();
+                chars.Go();
+                chars.Inventory();
             }
 
         }
