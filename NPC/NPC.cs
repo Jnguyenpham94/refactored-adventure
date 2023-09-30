@@ -11,14 +11,15 @@ namespace Adventure
         private string fName { get; set; }
         private string lName { get; set; }
         private string title { get; set; }
-        private int HP { get; set; }
+        public int HP { get; set; }
         private int str { get; set; }
         private int def { get; set; }
         private int moves { get; set; }
         private List<string> inventory { get; set; }
+        public int[] position { get; set; }
 
 
-        public NPC(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory)
+        public NPC(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, int[] position)
         {
             this.fName = fName;
             this.lName = lName;
@@ -28,6 +29,7 @@ namespace Adventure
             this.def = def;
             this.moves = moves;
             this.inventory = inventory;
+            this.position = position;
         }
 
 
@@ -61,7 +63,7 @@ moves: {moves}");
     class Player : NPC
     {
 
-        public Player(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory) : base(fName, lName, title, HP, str, def, moves, inventory)
+        public Player(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, position)
         {
         }
 
@@ -82,7 +84,7 @@ moves: {moves}");
     }
     class Villager : NPC
     {
-        public Villager(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory) : base(fName, lName, title, HP, str, def, moves, inventory)
+        public Villager(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, position)
         {
         }
 
@@ -98,7 +100,7 @@ moves: {moves}");
     }
     class Enemy : NPC
     {
-        public Enemy(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory) : base(fName, lName, title, HP, str, def, moves, inventory)
+        public Enemy(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, position)
         {
 
         }
