@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Adventure
 {
     class NPC
@@ -51,11 +46,7 @@ namespace Adventure
         public virtual void DisplayStats()
         {
             Console.WriteLine($"{fName} {lName} the {title}");
-            Console.WriteLine($@"HP: {HP}
-STR: {str}
-DEF: {def}
-moves: {moves}");
-
+            Console.WriteLine($"HP: {HP} STR: {str} DEF: {def} moves: {moves}");
         }
 
 
