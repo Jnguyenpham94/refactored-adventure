@@ -13,6 +13,24 @@ namespace Adventure
         private List<string> inventory { get; set; }
         public int[] position { get; set; }
 
+        protected static int origRow;
+        protected static int origCol;
+
+        //prints to console the string at the (x, y) values 
+        protected static void WriteAt(string s, int x, int y)
+        {
+            try
+            {
+                Console.SetCursorPosition(origCol + x, origRow + y);
+                Console.Write(s);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.Clear();
+                Console.WriteLine(e.Message);
+            }
+        }
+
 
         public NPC(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, int[] position)
         {
@@ -35,18 +53,21 @@ namespace Adventure
 
         public virtual void Inventory()
         {
-            Console.WriteLine($"The {title}'s inventory: ");
+            Console.Clear();
+            WriteAt($"The {title}'s inventory: ", 0, 0);
+            int count = 1;
             foreach (string item in inventory)
             {
-                Console.WriteLine(item);
+                WriteAt(item, 0, count++);
             }
             Console.WriteLine();
         }
 
         public virtual void DisplayStats()
         {
-            Console.WriteLine($"{fName} {lName} the {title}");
-            Console.WriteLine($"HP: {HP} STR: {str} DEF: {def} moves: {moves}");
+            Console.Clear();
+            WriteAt($"{fName} {lName} the {title}", 0, 0);
+            WriteAt($"HP: {HP} STR: {str} DEF: {def} moves: {moves}", 0, 1);
         }
 
 
