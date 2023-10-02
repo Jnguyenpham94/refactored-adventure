@@ -70,6 +70,10 @@ namespace Adventure
             WriteAt($"HP: {HP} STR: {str} DEF: {def} moves: {moves}", 0, 1);
         }
 
+        public string GetName(NPC person)
+        {
+            return $"{person.fName} {person.lName} {person.title}";
+        }
 
     }
     class Player : NPC

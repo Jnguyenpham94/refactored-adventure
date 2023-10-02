@@ -6,6 +6,16 @@ namespace Adventure
         int height = Console.WindowHeight - 1;
         int width = Console.WindowWidth - 5;
 
+        public bool Encounter(NPC hero, NPC enemy)
+        {
+            if (hero.position[0] == enemy.position[0] && hero.position[1] == enemy.position[1])
+            {
+                Console.WriteLine($"You have encountered {enemy.GetName(enemy)} ");
+                return true;
+            }
+            return false;
+        }
+
         public bool Move(NPC hero, string player)
         {
             bool end = true;
@@ -29,7 +39,9 @@ namespace Adventure
                     end = false;
                     break;
                 case ConsoleKey.P: //show current position
+                    Console.SetCursorPosition(50, 0);
                     Console.WriteLine($"({hero.position[0]}, {hero.position[1]})");
+                    Console.SetCursorPosition(hero.position[0], hero.position[1]);
                     break;
                 case ConsoleKey.I:
                     hero.Inventory();
