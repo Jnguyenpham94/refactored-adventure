@@ -16,6 +16,12 @@ namespace Adventure
             return false;
         }
 
+        public void Battle(NPC hero, NPC enemy)
+        {
+            Console.WriteLine("Battle Start");
+
+        }
+
         public bool Move(NPC hero, string player)
         {
             bool end = true;

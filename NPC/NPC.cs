@@ -1,4 +1,6 @@
 ﻿
+using NPC;
+
 namespace Adventure
 {
     class NPC
@@ -32,7 +34,7 @@ namespace Adventure
         }
 
 
-        public NPC(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, int[] position)
+        public NPC(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, Equipment equipment, int[] position)
         {
             this.fName = fName;
             this.lName = lName;
@@ -42,6 +44,7 @@ namespace Adventure
             this.def = def;
             this.moves = moves;
             this.inventory = inventory;
+            Equipment equipment1 = equipment;
             this.position = position;
         }
 
@@ -76,10 +79,11 @@ namespace Adventure
         }
 
     }
+
     class Player : NPC
     {
 
-        public Player(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, position)
+        public Player(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, Equipment equipment, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, equipment, position)
         {
         }
 
@@ -98,9 +102,10 @@ namespace Adventure
             base .DisplayStats();
         }
     }
+
     class Villager : NPC
     {
-        public Villager(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, position)
+        public Villager(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, Equipment equipment, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, equipment, position)
         {
         }
 
@@ -114,9 +119,10 @@ namespace Adventure
             base.Inventory();
         }
     }
+
     class Enemy : NPC
     {
-        public Enemy(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, position)
+        public Enemy(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, Equipment equipment, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, equipment, position)
         {
 
         }
