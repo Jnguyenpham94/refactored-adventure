@@ -1,25 +1,61 @@
 ﻿
+
 namespace Adventure
 {
     class Actions
     {
         int height = Console.WindowHeight - 1;
         int width = Console.WindowWidth - 5;
+        protected static int origRow;
+        protected static int origCol;
 
         public bool Encounter(NPC hero, NPC enemy)
         {
             if (hero.position[0] == enemy.position[0] && hero.position[1] == enemy.position[1])
             {
-                Console.WriteLine($"You have encountered {enemy.GetName(enemy)} ");
+                WriteAt($"You have encountered {enemy.GetName(enemy)} ", width/2, height/2);
                 return true;
             }
             return false;
         }
 
+        //prints to console the string at the (x, y) values 
+        protected static void WriteAt(string s, int x, int y)
+        {
+            try
+            {
+                Console.SetCursorPosition(origCol + x, origRow + y);
+                Console.Write(s);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.Clear();
+                Console.WriteLine(e.Message);
+            }
+        }
+
         public void Battle(NPC hero, NPC enemy)
         {
             Console.WriteLine("Battle Start");
+            do
+            {
+                enemy.HP = Attack(hero, enemy);
+                if (enemy.HP >= 0)
+                {
+                    hero.HP = Attack(enemy, hero);
+                }
+            } while (hero.HP >= 0 && enemy.HP >= 0);
+            WriteAt(hero.HP >= 0 ? $"{hero.GetName(hero)} has WON" : $"You Lost to {enemy.GetName(enemy)}", 0, 1);
+        }
 
+        private int Attack(NPC attack, NPC defend)
+        {
+            //(base damage(1) + npc weapon damage) - (attacker str - defender def) 
+            int damage = 1 + attack.equipment.damage + (attack.str - defend.def);
+            defend.HP -= damage;
+            WriteAt($"{attack.GetName(attack)} attacked {defend.GetName(defend)} for {damage}", 0, 1);
+            WriteAt($"{defend.GetName(defend)} has {defend.HP}", 0, 2);
+            return defend.HP;
         }
 
         public bool Move(NPC hero, string player)

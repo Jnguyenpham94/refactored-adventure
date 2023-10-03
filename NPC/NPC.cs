@@ -1,25 +1,37 @@
 ﻿
-using NPC;
-
 namespace Adventure
 {
+    class Equipment
+    {
+        private string name { get; set; }
+        public int damage { get; set; }
+
+        public Equipment(string name, int damage)
+        {
+            this.name = name;
+            this.damage = damage;
+        }
+
+    }
+
     class NPC
     {
         private string fName { get; set; }
         private string lName { get; set; }
         private string title { get; set; }
         public int HP { get; set; }
-        private int str { get; set; }
-        private int def { get; set; }
+        public int str { get; set; }
+        public int def { get; set; }
         private int moves { get; set; }
         private List<string> inventory { get; set; }
+        public Equipment equipment { get; set; }
         public int[] position { get; set; }
 
         protected static int origRow;
         protected static int origCol;
 
         //prints to console the string at the (x, y) values 
-        protected static void WriteAt(string s, int x, int y)
+        protected virtual void WriteAt(string s, int x, int y)
         {
             try
             {
@@ -44,7 +56,7 @@ namespace Adventure
             this.def = def;
             this.moves = moves;
             this.inventory = inventory;
-            Equipment equipment1 = equipment;
+            this.equipment = equipment;
             this.position = position;
         }
 
@@ -75,7 +87,7 @@ namespace Adventure
 
         public string GetName(NPC person)
         {
-            return $"{person.fName} {person.lName} {person.title}";
+            return $"{person.fName} {person.lName} the {person.title}";
         }
 
     }
