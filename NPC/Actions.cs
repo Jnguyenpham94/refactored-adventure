@@ -8,6 +8,7 @@ namespace Adventure
         int width = Console.WindowWidth - 5;
         protected static int origRow;
         protected static int origCol;
+        int lineCount = 1;
 
         public bool Encounter(NPC hero, NPC enemy)
         {
@@ -45,7 +46,8 @@ namespace Adventure
                     hero.HP = Attack(enemy, hero);
                 }
             } while (hero.HP >= 0 && enemy.HP >= 0);
-            WriteAt(hero.HP >= 0 ? $"{hero.GetName(hero)} has WON" : $"You Lost to {enemy.GetName(enemy)}", 0, 1);
+            WriteAt(hero.HP >= 0 ? $"{hero.GetName(hero)} has WON" : $"You Lost to {enemy.GetName(enemy)}", 0, lineCount++);
+            lineCount = 1;
         }
 
         private int Attack(NPC attack, NPC defend)
@@ -53,8 +55,8 @@ namespace Adventure
             //(base damage(1) + npc weapon damage) - (attacker str - defender def) 
             int damage = 1 + attack.equipment.damage + (attack.str - defend.def);
             defend.HP -= damage;
-            WriteAt($"{attack.GetName(attack)} attacked {defend.GetName(defend)} for {damage}", 0, 1);
-            WriteAt($"{defend.GetName(defend)} has {defend.HP}", 0, 2);
+            WriteAt($"{attack.GetName(attack)} attacked {defend.GetName(defend)} for {damage}", 0, lineCount++);
+            WriteAt($"{defend.GetName(defend)} has {defend.HP}", 0, lineCount++);
             return defend.HP;
         }
 
@@ -90,6 +92,9 @@ namespace Adventure
                     break;
                 case ConsoleKey.S:
                     hero.DisplayStats();
+                    break;
+                case ConsoleKey.C:
+                    Console.Clear();
                     break;
                 default:
                     Console.WriteLine("Illegal button detected!!!");
