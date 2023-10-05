@@ -1,10 +1,21 @@
 ﻿
+using System;
+
 namespace Adventure
 {
     class Equipment
     {
-        private string name { get; set; }
-        public int damage { get; set; }
+        private string name;
+        public string Name 
+        { get { return name; }
+          set { name = value; } 
+        }
+        private int damage;
+        public int Damage
+        {
+            get { return damage; }
+            set { damage = value; }
+        }
 
         public Equipment(string name, int damage)
         {
@@ -16,19 +27,50 @@ namespace Adventure
 
     class NPC
     {
-        private string fName { get; set; }
-        private string lName { get; set; }
-        private string title { get; set; }
-        public int HP { get; set; }
-        public int str { get; set; }
-        public int def { get; set; }
+        private string fName;
+        public string FName
+        {
+            get { return $"{fName}"; }
+            set { fName = value; }
+        }
+
+        private string lName;
+        public string LName
+        {
+            get { return $"{lName}"; }
+            set { lName = value; }
+        }
+        private string title;
+        public string Title
+        {
+            get { return $"{title}"; }
+            set { title = value; }
+        }
+        private int Hp;
+        public int HP
+        {
+            get { return Hp; }
+            set { Hp = value; }
+        }
+        private int str;
+        public int Str
+        {
+            get { return str; }
+            set { str = value; }
+        }
+        private int def { get; set; }
+        public int Def
+        {
+            get { return def; }
+            set { def = value; }
+        }
         private int moves { get; set; }
         private List<string> inventory { get; set; }
         public Equipment equipment { get; set; }
         public int[] position { get; set; }
 
-        protected static int origRow;
-        protected static int origCol;
+        protected static int origRow = 0;
+        protected static int origCol = 0;
 
         //prints to console the string at the (x, y) values 
         protected virtual void WriteAt(string s, int x, int y)
@@ -51,7 +93,7 @@ namespace Adventure
             this.fName = fName;
             this.lName = lName;
             this.title = title;
-            this.HP = HP;
+            this.Hp = HP;
             this.str = str;
             this.def = def;
             this.moves = moves;
@@ -82,10 +124,10 @@ namespace Adventure
         {
             Console.Clear();
             WriteAt($"{fName} {lName} the {title}", 0, 0);
-            WriteAt($"HP: {HP} STR: {str} DEF: {def} moves: {moves}", 0, 1);
+            WriteAt($"HP: {Hp} STR: {str} DEF: {def} moves: {moves}", 0, 1);
         }
 
-        public string GetName(NPC person)
+        public string GetFullName(NPC person)
         {
             return $"{person.fName} {person.lName} the {person.title}";
         }

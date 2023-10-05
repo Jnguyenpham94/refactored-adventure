@@ -14,7 +14,7 @@ namespace Adventure
         {
             if (hero.position[0] == enemy.position[0] && hero.position[1] == enemy.position[1])
             {
-                WriteAt($"You have encountered {enemy.GetName(enemy)} ", width/2, height/2);
+                WriteAt($"You have encountered {enemy.GetFullName(enemy)} ", width/2, height/2);
                 return true;
             }
             return false;
@@ -46,17 +46,21 @@ namespace Adventure
                     hero.HP = Attack(enemy, hero);
                 }
             } while (hero.HP >= 0 && enemy.HP >= 0);
-            WriteAt(hero.HP >= 0 ? $"{hero.GetName(hero)} has WON" : $"You Lost to {enemy.GetName(enemy)}", 0, lineCount++);
+            WriteAt(hero.HP >= 0 ? $"{hero.GetFullName(hero)} has WON" : $"You Lost to {enemy.GetFullName(enemy)}", 0, lineCount++);
             lineCount = 1;
         }
 
         private int Attack(NPC attack, NPC defend)
         {
             //(base damage(1) + npc weapon damage) - (attacker str - defender def) 
-            int damage = 1 + attack.equipment.damage + (attack.str - defend.def);
+            int damage = 1 + attack.equipment.Damage + (attack.Str - defend.Def);
             defend.HP -= damage;
-            WriteAt($"{attack.GetName(attack)} attacked {defend.GetName(defend)} for {damage}", 0, lineCount++);
-            WriteAt($"{defend.GetName(defend)} has {defend.HP}", 0, lineCount++);
+            if(damage <= 0)
+            {
+                damage = 1;
+            }
+            WriteAt($"{attack.FName} attacked {defend.FName} with {attack.equipment.Name} for {damage}", 0, lineCount++);
+            WriteAt($"{defend.FName} has {defend.HP}", 0, lineCount++);
             return defend.HP;
         }
 
