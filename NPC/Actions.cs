@@ -1,5 +1,7 @@
 ﻿
 
+using System;
+
 namespace Adventure
 {
     class Actions
@@ -10,7 +12,7 @@ namespace Adventure
         protected static int origCol;
         int lineCount = 1;
 
-        public bool Encounter(NPC hero, NPC enemy)
+        public bool BattleEncounter(NPC hero, NPC enemy)
         {
             if (hero.position[0] == enemy.position[0] && hero.position[1] == enemy.position[1])
             {
@@ -18,6 +20,23 @@ namespace Adventure
                 return true;
             }
             return false;
+        }
+
+        public bool MerchantEncounter(Player hero, Villager trader)
+        {
+            if (hero.position[0] == trader.position[0] && hero.position[1] == trader.position[1])
+            {
+                WriteAt($"You have encountered {trader.GetFullName(trader)} ", width / 2, height / 2);
+                WriteAt($"What are you Buying? {trader.GetFullName(trader)} ", 1, lineCount++);
+                return true;
+            }
+            return false;
+        }
+
+        public bool Shop(Player hero, Villager trader)
+        {
+            trader.ShopInventory();
+            return true;
         }
 
         //prints to console the string at the (x, y) values 

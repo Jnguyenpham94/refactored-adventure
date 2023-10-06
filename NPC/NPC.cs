@@ -1,6 +1,4 @@
 ﻿
-using System;
-
 namespace Adventure
 {
     class Equipment
@@ -65,7 +63,7 @@ namespace Adventure
             set { def = value; }
         }
         private int moves { get; set; }
-        private List<string> inventory { get; set; }
+        private List<string> inventory {  get; set; }
         public Equipment equipment { get; set; }
         public int[] position { get; set; }
 
@@ -159,8 +157,11 @@ namespace Adventure
 
     class Villager : NPC
     {
+        private List<string> inventory { get; set; }
+
         public Villager(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, Equipment equipment, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, equipment, position)
         {
+            this.inventory = inventory;
         }
 
         public override void Go()
@@ -171,6 +172,19 @@ namespace Adventure
         public override void Inventory()
         {
             base.Inventory();
+        }
+
+        public void ShopInventory()
+        {
+            Console.Clear();
+            WriteAt($"The {Title}'s inventory: ", 0, 0);
+            int count = 1;
+            foreach (string item in inventory)
+            {
+                WriteAt($"{count}. {item}", 0, count++);
+            }
+            Console.WriteLine();
+            //TODO: menu input switch statements
         }
     }
 
