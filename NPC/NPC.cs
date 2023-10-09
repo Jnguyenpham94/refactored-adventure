@@ -63,7 +63,11 @@ namespace Adventure
             set { def = value; }
         }
         private int moves { get; set; }
-        private List<string> inventory {  get; set; }
+        private List<string> inventory;
+        public List<string> backpack 
+        { get { return inventory; } 
+          set { inventory = value; }
+        }
         public Equipment equipment { get; set; }
         public int[] position { get; set; }
 
@@ -174,7 +178,7 @@ namespace Adventure
             base.Inventory();
         }
 
-        public void ShopInventory()
+        public string ShopInventory(NPC trader)
         {
             Console.Clear();
             WriteAt($"The {Title}'s inventory: ", 0, 0);
@@ -189,14 +193,14 @@ namespace Adventure
             switch (input)
             {
                 case "1":
-                    break;
+                    return trader.backpack[0];
                 case "2":
-                    break;
+                    return trader.backpack[1];
                 case "3":
-                    break;
+                    return trader.backpack[2];
                 default:
                     Console.WriteLine("Goodbye");
-                    break;
+                    return "0";
             }
         }
     }

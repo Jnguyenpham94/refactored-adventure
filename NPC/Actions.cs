@@ -33,10 +33,9 @@ namespace Adventure
             return false;
         }
 
-        public bool Shop(Player hero, Villager trader)
+        public string Shop(Player hero, Villager trader)
         {
-            trader.ShopInventory();
-            return true;
+            return trader.ShopInventory(trader);
         }
 
         //prints to console the string at the (x, y) values 

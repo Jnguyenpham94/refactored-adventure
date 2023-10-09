@@ -60,7 +60,9 @@ namespace Adventure
                 }
                 if (act.MerchantEncounter(hero, trader))
                 {
-                    act.Shop(hero, trader);
+                    hero.backpack.Add(act.Shop(hero, trader));
+                    hero.position[0]++;
+                    //TODO: reinitialize stuff on screen
                 }
 
             } while (hero.HP > 0 && end);
