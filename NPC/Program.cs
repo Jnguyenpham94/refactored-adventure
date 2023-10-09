@@ -1,8 +1,20 @@
 ﻿
+using System.Diagnostics;
+using System;
+
 namespace Adventure
 {
     class Program
     {
+
+        // Available player and food strings
+        static string[] playerStates = { "('-')", "(^-^)", "(X_X)" };
+        static string[] enemyStates = { "(<_>)" };
+
+        // Current player string displayed in the Console
+        static string player = playerStates[0];
+        static string merchant = playerStates[1];
+        static string enemy = enemyStates[0];
         static void Main(string[] args)
         {
             //// setting the window size
@@ -10,16 +22,7 @@ namespace Adventure
 
             //// setting buffer size of console
             //Console.SetBufferSize(200, 200);
-
-            // Available player and food strings
-            string[] playerStates = { "('-')", "(^-^)", "(X_X)" };
-            string[] enemyStates = { "(<_>)" };
             Console.CursorVisible = true;
-
-            // Current player string displayed in the Console
-            string player = playerStates[0];
-            string merchant = playerStates[1];
-            string enemy = enemyStates[0];
 
             Actions act = new();
 
@@ -33,22 +36,11 @@ namespace Adventure
 
             Console.WriteLine("THE ADVENTURE BEGINS");
             //initialize characters on console
-            Console.SetCursorPosition(demon.position[0], demon.position[1]);
-            Console.Write(enemy);
-
-            Console.SetCursorPosition(trader.position[0], trader.position[1]);
-            Console.Write(merchant);
-
-            Console.SetCursorPosition(hero.position[0], hero.position[1]);
-            Console.Write(player);  
+            CreateNPCs(demon, enemy);
+            CreateNPCs(trader, merchant);
+            CreateNPCs(hero, player);
 
             NPC[] characters = { hero, fisherman, demon };
-
-            //foreach (NPC peeps in characters)
-            //{
-            //    peeps.DisplayStats();
-            //    peeps.Inventory();
-            //}
 
             bool end = true;
             do
@@ -61,12 +53,20 @@ namespace Adventure
                 if (act.MerchantEncounter(hero, trader))
                 {
                     hero.backpack.Add(act.Shop(hero, trader));
-                    hero.position[0]++;
-                    //TODO: reinitialize stuff on screen
+                    hero.position[1]++;
+                    CreateNPCs(demon, enemy);
+                    CreateNPCs(trader, merchant);
+                    CreateNPCs(hero, player);
                 }
 
             } while (hero.HP > 0 && end);
 
+        }
+
+        private static void CreateNPCs(NPC npc, string type)
+        {
+            Console.SetCursorPosition(npc.position[0], npc.position[1]);
+            Console.Write(type);
         }
     }
 }

@@ -112,7 +112,6 @@ namespace Adventure
 
         public virtual void Inventory()
         {
-            Console.Clear();
             WriteAt($"The {title}'s inventory: ", 0, 0);
             int count = 1;
             foreach (string item in inventory)
@@ -124,7 +123,6 @@ namespace Adventure
 
         public virtual void DisplayStats()
         {
-            Console.Clear();
             WriteAt($"{fName} {lName} the {title}", 0, 0);
             WriteAt($"HP: {Hp} STR: {str} DEF: {def} moves: {moves}", 0, 1);
         }
@@ -182,10 +180,11 @@ namespace Adventure
         {
             Console.Clear();
             WriteAt($"The {Title}'s inventory: ", 0, 0);
-            int count = 1;
+            int number = 1;
+            int count = 25;
             foreach (string item in inventory)
             {
-                WriteAt($"{count}. {item}", 0, count++);
+                WriteAt($"{number++}. {item}", 0, count++);
             }
             Console.WriteLine();
             //TODO: menu input switch statements
@@ -193,10 +192,13 @@ namespace Adventure
             switch (input)
             {
                 case "1":
+                    Console.Clear();
                     return trader.backpack[0];
                 case "2":
+                    Console.Clear();
                     return trader.backpack[1];
                 case "3":
+                    Console.Clear();
                     return trader.backpack[2];
                 default:
                     Console.WriteLine("Goodbye");

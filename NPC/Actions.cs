@@ -54,7 +54,7 @@ namespace Adventure
         }
 
         public void Battle(NPC hero, NPC enemy)
-        {
+        {//TODO: clear battle log. After a timer or button press...
             Console.WriteLine("Battle Start");
             do
             {
@@ -118,6 +118,7 @@ namespace Adventure
                 case ConsoleKey.C:
                     Console.Clear();
                     break;
+                //TODO: inventory usage HERE!!! probably numbers
                 default:
                     Console.WriteLine("Illegal button detected!!!");
                     end = false;
