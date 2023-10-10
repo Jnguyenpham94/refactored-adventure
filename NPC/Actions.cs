@@ -82,6 +82,20 @@ namespace Adventure
             return defend.HP;
         }
 
+        public void UseItemHP(NPC player)
+        {
+            if (player.HP < 1000)
+            {
+                player.HP += 100;
+                Console.WriteLine("HP potion use: +100 HP");
+                player.backpack.Remove("HP potion");
+            }
+            else
+            {
+                Console.WriteLine("HP full");
+            }
+        }
+
         public bool Move(NPC hero, string player)
         {
             bool end = true;
@@ -117,8 +131,12 @@ namespace Adventure
                     break;
                 case ConsoleKey.C:
                     Console.Clear();
+                    WriteAt("Cleared screen", 0, 0);
                     break;
                 //TODO: inventory usage HERE!!! probably numbers
+                case ConsoleKey.NumPad1:
+                    UseItemHP(hero);
+                    break;
                 default:
                     Console.WriteLine("Illegal button detected!!!");
                     end = false;
