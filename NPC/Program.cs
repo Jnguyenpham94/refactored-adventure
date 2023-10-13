@@ -26,7 +26,7 @@ namespace Adventure
 
             Actions act = new();
 
-            Player hero = new("Hiro", "O", "Hero", 1000, 100, 50, 5, new List<string> { "HP potion"}, new Equipment("katana", 30), new int[] {0, 1});
+            Player hero = new("Hiro", "O", "Hero", 1000, 100, 50, 5, new List<string> { "HP potion", "HP potion"}, new Equipment("katana", 30), new int[] {0, 1});
             Villager fisherman = new("Bob", "Smith", "The fisherman", 5, 5, 5, 2, new List<string> {"fishing pole"}, new Equipment("fishing pole", 2), new int[] { 0, 0 });
             Villager trader = new("Joe", "Goldman", "The merchant", 5, 5, 5, 2, new List<string> { "Pen", "HP potion", "HP potion" }, new Equipment("fishing pole", 2), new int[] { 5, 5 });
 

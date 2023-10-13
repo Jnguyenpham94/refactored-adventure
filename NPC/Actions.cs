@@ -87,6 +87,10 @@ namespace Adventure
             if (player.HP < 1000)
             {
                 player.HP += 100;
+                if(player.HP > 1000)
+                {
+                    player.HP = 1000;
+                }
                 Console.WriteLine("HP potion use: +100 HP");
                 player.backpack.Remove("HP potion");
             }
@@ -116,6 +120,7 @@ namespace Adventure
                     hero.position[0] += 1;
                     break;
                 case ConsoleKey.Escape:
+                    Console.WriteLine("Game Over");
                     end = false;
                     break;
                 case ConsoleKey.P: //show current position
@@ -137,10 +142,10 @@ namespace Adventure
                 case ConsoleKey.NumPad1:
                     UseItemHP(hero);
                     break;
-                default:
-                    Console.WriteLine("Illegal button detected!!!");
-                    end = false;
-                    break;
+                //default:
+                //    Console.WriteLine("Illegal button detected!!!");
+                //    end = false;
+                //    break;
             }
 
             //Clear the characters at the previous position
