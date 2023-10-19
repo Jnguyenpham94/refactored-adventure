@@ -1,21 +1,14 @@
 ﻿
-using System.Diagnostics;
 using System;
+using static Adventure.globals;
 
 namespace Adventure
 {
     class Program
     {
 
-        // Available player and food strings
-        static string[] playerStates = { "('-')", "(^-^)", "(X_X)" };
-        static string[] enemyStates = { "(<_>)" };
 
-        // Current player string displayed in the Console
-        static string player = playerStates[0];
-        static string merchant = playerStates[1];
-        static string enemy = enemyStates[0];
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             //// setting the window size
             //Console.SetWindowSize(100, 100);
@@ -36,9 +29,9 @@ namespace Adventure
 
             Console.WriteLine("THE ADVENTURE BEGINS");
             //initialize characters on console
-            CreateNPCs(demon, enemy);
-            CreateNPCs(trader, merchant);
-            CreateNPCs(hero, player);
+            CreateNPC(demon, enemy);
+            CreateNPC(trader, merchant);
+            CreateNPC(hero, player);
 
             NPC[] characters = { hero, fisherman, demon };
 
@@ -54,16 +47,16 @@ namespace Adventure
                 {
                     hero.backpack.Add(act.Shop(hero, trader));
                     hero.position[1]++;
-                    CreateNPCs(demon, enemy);
-                    CreateNPCs(trader, merchant);
-                    CreateNPCs(hero, player);
+                    CreateNPC(demon, enemy);
+                    CreateNPC(trader, merchant);
+                    CreateNPC(hero, player);
                 }
 
             } while (hero.HP > 0 && end);
 
         }
 
-        private static void CreateNPCs(NPC npc, string type)
+        public static void CreateNPC(NPC npc, string type)
         {
             Console.SetCursorPosition(npc.position[0], npc.position[1]);
             Console.Write(type);

@@ -84,11 +84,6 @@ namespace Adventure
         }
 
 
-        public virtual void Go()
-        {
-
-        }
-
         public virtual void Inventory()
         {
             WriteAt($"The {title}'s inventory: ", 0, 0);
@@ -120,10 +115,6 @@ namespace Adventure
         {
         }
 
-        public override void Go()
-        {
-            Console.WriteLine("The player is moving!");
-        }
 
         public override void Inventory()
         {
@@ -143,11 +134,6 @@ namespace Adventure
         public Villager(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, Equipment equipment, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, equipment, position)
         {
             this.inventory = inventory;
-        }
-
-        public override void Go()
-        {
-            Console.WriteLine("The villager is moving!");
         }
 
         public override void Inventory()
@@ -191,11 +177,6 @@ namespace Adventure
         public Enemy(string fName, string lName, string title, int HP, int str, int def, int moves, List<string> inventory, Equipment equipment, int[] position) : base(fName, lName, title, HP, str, def, moves, inventory, equipment, position)
         {
 
-        }
-
-        public override void Go()
-        {
-            Console.WriteLine("The enemy is moving");
         }
 
         public override void Inventory()

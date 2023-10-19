@@ -1,16 +1,17 @@
 ﻿
-
 using System;
+using static Adventure.globals;
 
 namespace Adventure
 {
-    class Actions
+    class Actions : Program
     {
         int height = Console.WindowHeight - 1;
         int width = Console.WindowWidth - 5;
         protected static int origRow;
         protected static int origCol;
         int lineCount = 1;
+        Random rnd = new Random();
 
         public bool BattleEncounter(NPC hero, NPC enemy)
         {
@@ -128,7 +129,7 @@ namespace Adventure
                     Console.WriteLine($"({hero.position[0]}, {hero.position[1]})");
                     Console.SetCursorPosition(hero.position[0], hero.position[1]);
                     break;
-                case ConsoleKey.I:
+                case ConsoleKey.I: //view player inventory
                     hero.Inventory();
                     break;
                 case ConsoleKey.S:
@@ -137,6 +138,12 @@ namespace Adventure
                 case ConsoleKey.C:
                     Console.Clear();
                     WriteAt("Cleared screen", 0, 0);
+                    break;
+                case ConsoleKey.M:// spawn an enemy at random location
+                    int x = rnd.Next(40);
+                    int y = rnd.Next(40);
+                    Enemy demon = new("Gyoubu", "Oni", "The Demon", 300, 50, 35, 3, new List<string> { "bloody heart" }, new Equipment("Demon saber", 20), new int[] { x, y });
+                    CreateNPC(demon, enemy);
                     break;
                 //TODO: inventory usage HERE!!! probably numbers
                 case ConsoleKey.NumPad1:
